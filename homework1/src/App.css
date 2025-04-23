@@ -1,0 +1,20 @@
+body {
+    font-size: 32px;
+}
+
+.table {
+    margin: 0 auto;
+    margin-top: 200px;
+    width: 300px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td, th { 
+    padding: 8px; 
+    border: 1px solid black; 
+}
+
+th, caption {
+    font-weight: bold;
+}
