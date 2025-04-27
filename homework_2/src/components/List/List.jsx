@@ -36,8 +36,6 @@ function List() {
     <div className="animals">
       <table className="animals__table">
         <tbody>
-          {" "}
-          {/* Додано тег <tbody> для усунення warning */}
           {list.map((item, index) => {
             return (
               <tr
