@@ -1,0 +1,127 @@
+// .users {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+//   gap: 20px;
+//   max-width: 1200px;
+//   margin: 20px auto;
+//   padding: 20px;
+//   text-align: center;
+// }
+
+// .user {
+//   background-color: #f9f9f9;
+//   border: 1px solid #ddd;
+//   border-radius: 8px;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+//   padding: 20px;
+//   text-align: left;
+//   transition: transform 0.2s ease-in-out;
+
+//   &:hover {
+//     transform: translateY(-5px);
+//     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+//   }
+
+//   .user__name {
+//     color: #333;
+//     font-size: 1.5rem;
+//     display: inline;
+//     margin-left: 30px;
+//     margin-bottom: 10px;
+//     cursor: pointer; /* Вказуємо, що ім'я клікабельне для редагування */
+//   }
+
+//   .user__name-edit {
+//     font-size: 1.5rem;
+//     padding: 8px;
+//     margin-bottom: 10px;
+//     border: 1px solid #ccc;
+//     border-radius: 4px;
+//     width: 100%;
+//     box-sizing: border-box;
+//   }
+
+//   .user__username,
+//   .user__email,
+//   .user__adress,
+//   .user__coordinats,
+//   .user__phone,
+//   .user__website,
+//   .user__company {
+//     color: #555;
+//     margin-bottom: 8px;
+
+//     b {
+//       font-weight: bold;
+//       color: #333;
+//       margin-right: 5px;
+//     }
+
+//     a {
+//       color: #007bff;
+//       text-decoration: none;
+
+//       &:hover {
+//         text-decoration: underline;
+//       }
+//     }
+//   }
+
+//   .user__checkbox {
+//     margin-left: 10px;
+//   }
+
+//   button {
+//     color: white;
+//     border: none;
+//     border-radius: 5px;
+//     padding: 8px 15px;
+//     cursor: pointer;
+//     font-size: 0.9rem;
+//     transition: background-color 0.2s ease;
+//     background-color: #c82333;
+//     display: block;
+//     margin: 0 auto;
+//     &:hover {
+//       filter: brightness(65%);
+//     }
+//   }
+
+//   button + button {
+//     margin-left: 10px;
+//     background-color: #007bff;
+
+//     &:hover {
+//       background-color: #0056b3;
+//     }
+//   }
+// }
+
+body {
+  background-color: #5cb9b7;
+}
+
+table {
+  width: 1450px;
+  border-collapse: collapse;
+  margin: 20px auto;
+  background-color: white;
+  font-family: Open Sans, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  text-align: center;
+}
+thead {
+  background-color: rgb(214, 127, 255);
+  color: white;
+  font-size: 1.1rem;
+}
+td,
+th {
+  padding: 10px 0;
+  border: 1px solid;
+}
+th {
+  background-color: rgb(214, 127, 255);
+  border-color: black;
+}
