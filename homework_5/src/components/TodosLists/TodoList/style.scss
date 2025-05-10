@@ -1,0 +1,24 @@
+.tasks {
+  &__todoBox,
+  &__inprogressBox,
+  &__doneBox,
+  &__onHoldBox {
+    width: 33.33%;
+    padding: 5px;
+    margin: 5px;
+    border: 1px dotted black;
+    padding-left: 20px;
+  }
+
+  &__todoItem,
+  &__inprogressItem,
+  &__doneItem,
+  &__onHoldBox {
+    margin-bottom: 5px;
+  }
+
+  &__button {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}

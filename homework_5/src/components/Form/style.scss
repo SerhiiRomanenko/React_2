@@ -1,0 +1,14 @@
+.form {
+  width: 240px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  &__fieldset {
+    display: flex;
+    flex-direction: column;
+    border: 1px dotted;
+  }
+}
+
+label {
+  margin-bottom: 10px;
+}
