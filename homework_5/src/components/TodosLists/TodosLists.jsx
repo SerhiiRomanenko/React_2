@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import "./style.scss";
 import TodosListsFormContext from "../../contexts/TodosListsFormContext";
-import TodoList from "./TodoList/TodoList";
+import TodosList from "./TodosList/TodosList";
 
 export default function TodosLists() {
   const { tasks } = useContext(TodosListsFormContext);
 
-  return <div className="tasks">{tasks.length ? <TodoList /> : null}</div>;
+  return <div className="tasks">{tasks.length ? <TodosList /> : null}</div>;
 }

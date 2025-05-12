@@ -12,7 +12,6 @@ export default function Item() {
         {tasks
           .filter((item) => item.status === 0)
           .map((el) => (
-            <>
               <li key={el.id} className="tasks__todoItem">
                 {el.title}
                 <button
@@ -22,7 +21,6 @@ export default function Item() {
                   In progress
                 </button>
               </li>
-            </>
           ))}
       </ul>
       <ul className="tasks__onHoldBox">
