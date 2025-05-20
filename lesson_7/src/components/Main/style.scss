@@ -1,0 +1,15 @@
+.main {
+	&__container {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+}
+
+.battle,
+.restart {
+	margin: 0 auto;
+	margin-top: 50px;
+	font-size: 20px;
+}

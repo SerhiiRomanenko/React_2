@@ -1,0 +1,30 @@
+.form {
+	width: 300px;
+	border: 1px solid black;
+	margin-right: 50px;
+	padding: 15px;
+	font-size: 20px;
+
+	&__description {
+		margin: 0;
+		margin-bottom: 15px;
+	}
+
+	&__login {
+		font-weight: bold;
+	}
+
+	&__input {
+		font-size: 20px;
+		margin-bottom: 15px;
+	}
+
+	&__logo {
+		width: 230px;
+	}
+
+	&__submit,
+	&__reset {
+		font-size: 20px;
+	}
+}
