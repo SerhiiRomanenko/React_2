@@ -1,0 +1,84 @@
+/*=================================----------------------------- NORMALIZE.CSS------------------------------------==============================*/
+
+/* 1. Використовує більш інтуїтивну модель box-sizing */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Видаляє дефолтний margin */
+* {
+	margin: 0;
+}
+
+/* 3. Дозволяє анімації та переходи на основі ключових слів */
+html:focus-within {
+	scroll-behavior: smooth;
+}
+
+/* 4. Встановлює базові властивості для body */
+body {
+	min-height: 100vh;
+	text-rendering: optimizeSpeed; /* Покращує рендеринг тексту */
+	line-height: 1.5; /* Для кращої читабельності */
+	-webkit-font-smoothing: antialiased; /* Для згладжування шрифтів на macOS */
+}
+
+/* 5. Робить зображення легшими для роботи */
+img,
+picture,
+video,
+canvas,
+svg {
+	max-width: 100%;
+	display: block; /* Усуває зайвий простір під зображеннями */
+}
+
+/* 6. Успадковує шрифти для інпутів та кнопок */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 7. Уникає переповнення тексту */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 8. Ізолює кореневий елемент для стекування контексту */
+#root,
+#__next {
+	/* #__next для Next.js, якщо використовуєте */
+	isolation: isolate;
+}
+
+/* 9. Видаляє стилі списків ul, ol за замовчуванням  */
+ul,
+ol {
+	list-style: none;
+	padding: 0;
+}
+
+/* 10. Видаляє всі анімації, переходи та плавний скролінг для тих, хто цього не бажає */
+@media (prefers-reduced-motion: reduce) {
+	html:focus-within {
+		scroll-behavior: auto;
+	}
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
