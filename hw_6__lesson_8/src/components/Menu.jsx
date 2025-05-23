@@ -1,16 +1,18 @@
+import { NavLink } from "react-router-dom";
+
 export default function Menu() {
 	return (
-		<nav className="menu">
-			<ul className="menu__list">
-				<li className="menu__item">
-					<a className="menu__itemLink" href="/">
+		<nav className="menu p-5 bg-red-200">
+			<ul className="menu__list flex gap-x-4">
+				<li className="menu__item bg-yellow-200 mr-2">
+					<NavLink className="menu__itemLink " to="/">
 						Home
-					</a>
+					</NavLink>
 				</li>
-				<li className="menu__item">
-					<a className="menu__itemLink" href="/countries">
+				<li className="menu__item bg-yellow-200">
+					<NavLink className="menu__itemLink" to="/countries">
 						Countries
-					</a>
+					</NavLink>
 				</li>
 			</ul>
 		</nav>
