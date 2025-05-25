@@ -6,17 +6,17 @@ import CountriesRoute from "./routes/CountriesRoute/CountriesRoute";
 import ErrorRoute from "./routes/ErrorRoute/ErrorRoute";
 
 function App() {
-	return (
-		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<Layout />}>
-					<Route index element={<HomeRoute />} />
-					<Route path="/countries" element={<CountriesRoute />} />
-					<Route path="*" element={<ErrorRoute />} />
-				</Route>
-			</Routes>
-		</BrowserRouter>
-	);
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomeRoute />} />
+          <Route path="/countries" element={<CountriesRoute />} />
+          <Route path="*" element={<ErrorRoute />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
