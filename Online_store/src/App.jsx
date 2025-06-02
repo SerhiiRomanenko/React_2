@@ -1,32 +1,19 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import service from "./services/mockapi";
+import HomeRoute from "./routes/HomeRoute";
+import DetailsRoute from "./routes/DetailsRoute";
+import ContactsRoute from "./routes/ContactsRoute";
+import ErrorRoute from "./routes/ErrorRoute";
 
 function App() {
-	const [trailers, setTrailers] = useState([]);
-
-	const getData = async () => {
-		try {
-			const response = await service.get("trailers");
-			setTrailers(response.data.trailers);
-			console.log(response.data.trailers);
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
-	useEffect(() => {
-		getData();
-	}, []);
-
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route>
-					<Route></Route>
-					<Route></Route>
-					<Route></Route>
+				<Route path="/" element={<HomeRoute />}>
+					<Route path="/details" element={<DetailsRoute />} />
+					<Route path="/contacts" element={<ContactsRoute />} />
+					<Route path="*" element={<ErrorRoute />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
