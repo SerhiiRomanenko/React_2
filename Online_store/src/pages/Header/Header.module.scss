@@ -1,3 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+
 .header {
-	color: red;
+	background-color: #234f9a;
+	color: white;
+	font-family: "Lato", sans-serif;
+	padding: 1rem 0;
+}
+
+.header__container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 1rem;
+}
+
+.header__navList {
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.header__navList a {
+	color: white;
+	text-decoration: none;
+	font-size: 1.2rem;
+	transition: color 0.3s ease;
+}
+
+.header__navList a:hover {
+	color: #fed721;
+}
+
+/* Планшети */
+@media (min-width: 768px) {
+	.header__container {
+		flex-direction: row;
+		justify-content: space-between;
+		text-align: left;
+	}
+
+	.header__navList {
+		flex-direction: row;
+		gap: 1.5rem;
+	}
+}
+
+/* Ноутбуки і більше */
+@media (min-width: 1024px) {
+	.header__navList a {
+		font-size: 1.3rem;
+	}
 }

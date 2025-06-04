@@ -1,6 +1,6 @@
 import services from "./../../services/mockapi";
-
-import styles from "./TarilersList.module.scss";
+import { useState, useEffect } from "react";
+import styles from "./TrailersList.module.scss";
 
 export default function TrailersList() {
 	const [trailers, setTrailers] = useState([]);
@@ -26,7 +26,7 @@ export default function TrailersList() {
 	}, []);
 
 	return (
-		<div>
+		<div className={styles.trailer__list}>
 			{trailers.length > 0
 				? trailers.map((trailer) => {
 						return (
@@ -34,6 +34,7 @@ export default function TrailersList() {
 								<p>{trailer.brand}</p>
 								<p>{trailer.model}</p>
 								<p>{trailer.price}</p>
+								<button>Додати в кошик</button>
 							</div>
 						);
 				  })

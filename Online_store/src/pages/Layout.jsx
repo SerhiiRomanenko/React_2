@@ -1,13 +1,20 @@
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
-import Main from "./Main/Main";
+
+import { Outlet } from "react-router-dom";
+
+import styles from "./Layout.module.scss";
 
 // TODO: Create Layout
 export default function Layout() {
 	return (
 		<>
 			<Header />
-			<Main />
+			<main className={styles.main}>
+				<div className={styles.main__container}>
+					<Outlet />
+				</div>
+			</main>
 			<Footer />
 		</>
 	);
