@@ -1,14 +1,31 @@
 .trailer {
 	&__list {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 1rem;
 		display: flex;
-		justify-content: space-between;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1rem;
 	}
 
 	&__card {
-		border: 1px solid black;
+		flex: 1 1 100%;
+		border: 1px solid #ccc;
+		padding: 1rem;
+		background-color: #daedfd;
 		text-align: center;
-		width: 200px;
-		margin-right: 20px;
-		background-color: aqua;
+
+		@media (min-width: 768px) {
+			flex: 1 1 calc(50% - 1rem); // 2 в ряд
+		}
+
+		@media (min-width: 1024px) {
+			flex: 1 1 calc(33.333% - 1rem); // 3 в ряд
+		}
+
+		@media (min-width: 1280px) {
+			flex: 1 1 calc(25% - 1rem); // 4 в ряд
+		}
 	}
 }
