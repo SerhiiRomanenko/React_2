@@ -1,12 +1,101 @@
 .footer {
-	background-color: #234f9a;
-	color: white;
-	font-family: "Lato", sans-serif;
-	padding: 1rem 0;
+	padding: 40px 20px;
+	background-color: #1c1c1c;
+	color: #fff;
+	font-family: sans-serif;
+}
 
-	&__container {
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: 0 1rem;
+.footer__container {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 40px;
+}
+
+.footer__models {
+	flex: 1 1 300px;
+}
+
+.footer__nav {
+	margin-top: 10px;
+	ul {
+		list-style: none;
+		padding: 0;
+		li {
+			margin-bottom: 8px;
+		}
 	}
+}
+
+.btnDraw {
+	display: inline-block;
+	color: #fff;
+	text-decoration: none;
+	padding: 6px 12px;
+	border: 1px solid #fff;
+	border-radius: 4px;
+	transition: all 0.3s ease;
+	&:hover {
+		background-color: #fff;
+		color: #1c1c1c;
+	}
+}
+
+.menuClearLeft {
+	clear: both;
+}
+
+.footer__phoneBlock {
+	flex: 1 1 300px;
+}
+
+.footer__navBar {
+	list-style: none;
+	padding: 0;
+	li {
+		margin-bottom: 12px;
+	}
+}
+
+.footer__tel {
+	margin-top: 10px;
+}
+
+.footer__phone {
+	color: #fff;
+	font-size: 18px;
+	text-decoration: none;
+	font-weight: bold;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.footer__caption {
+	font-size: 16px;
+	margin-top: 5px;
+}
+
+.footer__socialWrapper {
+	padding: 15px 0;
+}
+
+.footer__socials {
+	display: flex;
+	gap: 15px;
+}
+
+.footer__socialIcon {
+	img {
+		width: 32px;
+		height: 32px;
+	}
+}
+
+.footer__copyright {
+	font-size: 14px;
+	color: #bbb;
+	margin-top: 20px;
 }

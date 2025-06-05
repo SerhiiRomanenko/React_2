@@ -5,51 +5,62 @@
 	color: white;
 	font-family: "Lato", sans-serif;
 	padding: 1rem 0;
-}
 
-.header__container {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 0 1rem;
-}
+	&__container {
+		width: 100%;
+		max-width: 1440px;
+		margin: 0 auto;
+		padding: 0 2rem;
 
-.header__navList {
-	display: flex;
-	flex-direction: row;
-	gap: 0.5rem;
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
-.header__navList a {
-	color: white;
-	text-decoration: none;
-	font-size: 1.2rem;
-	transition: color 0.3s ease;
-}
-
-.header__navList a:hover {
-	color: #fed721;
-}
-
-/* Планшети */
-@media (min-width: 768px) {
-	.header__container {
-		flex-direction: row;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 		justify-content: space-between;
-		text-align: left;
+
+		@media (min-width: 768px) {
+			flex-direction: row;
+			align-items: center;
+			text-align: left;
+		}
 	}
 
-	.header__navList {
+	&__logo {
+		height: 40px;
+		width: auto;
+		object-fit: contain;
+
+		@media (min-width: 1024px) {
+			height: 50px;
+		}
+	}
+
+	&__navList {
+		display: flex;
 		flex-direction: row;
-		gap: 1.5rem;
-	}
-}
+		gap: 0.5rem;
+		list-style: none;
+		padding: 0;
+		margin: 0;
 
-/* Ноутбуки і більше */
-@media (min-width: 1024px) {
-	.header__navList a {
-		font-size: 1.3rem;
+		@media (min-width: 768px) {
+			gap: 1.5rem;
+		}
+	}
+
+	&__navItem {
+		a {
+			color: white;
+			text-decoration: none;
+			font-size: 1.2rem;
+			transition: color 0.3s ease;
+
+			&:hover {
+				color: #fed721;
+			}
+
+			@media (min-width: 1024px) {
+				font-size: 1.3rem;
+			}
+		}
 	}
 }

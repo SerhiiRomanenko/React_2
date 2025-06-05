@@ -1,31 +1,41 @@
 .trailer {
 	&__list {
-		max-width: 1200px;
+		width: 100%;
+		max-width: 1440px; // було 1200px — збільшено
 		margin: 0 auto;
-		padding: 1rem;
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: center;
 		gap: 1rem;
+		justify-content: flex-start;
 	}
 
 	&__card {
-		flex: 1 1 100%;
+		width: 100%;
+		max-width: 100%;
 		border: 1px solid #ccc;
 		padding: 1rem;
-		background-color: #daedfd;
+		background-color: #f5d9ce;
 		text-align: center;
+		box-sizing: border-box;
 
-		@media (min-width: 768px) {
-			flex: 1 1 calc(50% - 1rem); // 2 в ряд
+		// Дуже маленькі екрани: 1 колонка
+		@media (min-width: 577px) {
+			max-width: calc(50% - 0.5rem); // 2 в ряд
 		}
 
-		@media (min-width: 1024px) {
-			flex: 1 1 calc(33.333% - 1rem); // 3 в ряд
+		// Середні екрани: 3 в ряд
+		@media (min-width: 769px) {
+			max-width: calc(33.333% - 0.67rem);
 		}
 
-		@media (min-width: 1280px) {
-			flex: 1 1 calc(25% - 1rem); // 4 в ряд
+		// Великі екрани: 4 в ряд
+		@media (min-width: 1025px) {
+			max-width: calc(25% - 0.75rem);
+		}
+
+		// Дуже великі екрани: 5 в ряд
+		@media (min-width: 1441px) {
+			max-width: calc(20% - 0.8rem);
 		}
 	}
 }

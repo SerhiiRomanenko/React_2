@@ -1,11 +1,13 @@
 .main {
-	color: #234f9a;
+	// color: #d3eefb;
 	font-family: "Lato", sans-serif;
+	background-color: #d3eefb;
 	padding: 1rem 0;
 
 	&__container {
-		max-width: 1200px;
+		width: 100%;
+		max-width: 1440px;
 		margin: 0 auto;
-		padding: 0 1rem;
+		padding: 0 2rem;
 	}
 }
