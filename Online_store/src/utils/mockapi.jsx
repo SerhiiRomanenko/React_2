@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { API_BASE_URL } from "../constants/constants";
+import { API_BASE_URL_2 as API_BASE_URL } from "../utils/constants";
 
 const service = {
   get: (endpoint, id) =>

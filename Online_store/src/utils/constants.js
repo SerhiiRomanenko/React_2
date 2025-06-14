@@ -1,4 +1,5 @@
 export const API_BASE_URL = "http://localhost:5000/API";
+export const API_BASE_URL_2 = "https://68147a48225ff1af1628f5cd.mockapi.io";
 
 export const USER_ROLES = {
   ADMIN: "admin",

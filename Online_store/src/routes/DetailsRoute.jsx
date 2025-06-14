@@ -1,3 +1,3 @@
 export default function DetailsRoute() {
-	return <>DetailsRoute</>;
+  return <>Ця сторінка в розробці</>;
 }

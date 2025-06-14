@@ -1,66 +1,127 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
 
 .header {
-	background-color: #234f9a;
-	color: white;
-	font-family: "Lato", sans-serif;
-	padding: 1rem 0;
+  background-color: #234f9a;
+  color: white;
+  font-family: "Lato", sans-serif;
+  padding: 1rem 0;
 
-	&__container {
-		width: 100%;
-		max-width: 1440px;
-		margin: 0 auto;
-		padding: 0 2rem;
+  &__container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 2rem;
 
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 
-		@media (min-width: 768px) {
-			flex-direction: row;
-			align-items: center;
-			text-align: left;
-		}
-	}
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+    }
+  }
 
-	&__logo {
-		height: 40px;
-		width: auto;
-		object-fit: contain;
+  &__logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
 
-		@media (min-width: 1024px) {
-			height: 50px;
-		}
-	}
+    @media (min-width: 1024px) {
+      height: 50px;
+    }
+  }
 
-	&__navList {
-		display: flex;
-		flex-direction: row;
-		gap: 0.5rem;
-		list-style: none;
-		padding: 0;
-		margin: 0;
+  &__navList {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 
-		@media (min-width: 768px) {
-			gap: 1.5rem;
-		}
-	}
+    @media (min-width: 768px) {
+      gap: 1.5rem;
+    }
+  }
 
-	&__navItem {
-		a {
-			color: white;
-			text-decoration: none;
-			font-size: 1.2rem;
-			transition: color 0.3s ease;
+  &__navItem {
+    a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
 
-			&:hover {
-				color: #fed721;
-			}
+      &:hover {
+        color: #e74c3c;
+      }
 
-			@media (min-width: 1024px) {
-				font-size: 1.3rem;
-			}
-		}
-	}
+      @media (min-width: 1024px) {
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+  &__searchForm {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+
+    @media (min-width: 768px) {
+      margin-top: 0;
+    }
+  }
+
+  &__searchWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__searchInput {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    outline: none;
+
+    &:focus {
+      border-color: #e74c3c;
+      box-shadow: 0 0 0 1px #e74c3c;
+    }
+
+    padding-right: 30px; // місце для хрестика
+  }
+
+  &__clearIcon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #999;
+    user-select: none;
+
+    &:hover {
+      color: #e74c3c;
+    }
+  }
+
+  &__searchButton {
+    background-color: #e74c3c;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      background-color: #e74c3c;
+      transform: translateY(-1px);
+    }
+  }
 }

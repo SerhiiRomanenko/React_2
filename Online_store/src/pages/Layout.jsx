@@ -7,15 +7,15 @@ import styles from "./Layout.module.scss";
 
 // TODO: Create Layout
 export default function Layout() {
-	return (
-		<>
-			<Header />
-			<main className={styles.main}>
-				<div className={styles.main__container}>
-					<Outlet />
-				</div>
-			</main>
-			<Footer />
-		</>
-	);
+  return (
+    <>
+      <Header />
+      <main className={styles.main}>
+        <div className={styles.main__container}>
+          <Outlet />
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
 }
