@@ -1,43 +1,11 @@
 import styles from "./TrailerDetails.module.scss";
 import { STATUS_MESSAGES } from "../../utils/constants";
-import service from "../../utils/mockapi";
-
 import ModalOrder from "../ModalOrder/ModalOrder";
-
-import { useState, useCallback, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import useTrailersStore from "../../store/features/trailers";
+import { useTrailerDetails } from "./useTrailerDetails";
 
 export default function TrailerDetails() {
-  const { id } = useParams();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const setSelectedTrailerInStore = useTrailersStore(
-    (state) => state.setSelectedTrailer
-  );
-
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ["trailer", id],
-    queryFn: () => service.get("trailers", id),
-    enabled: !!id,
-  });
-
-  useEffect(() => {
-    if (data) {
-      setSelectedTrailerInStore(data);
-    } else if (!isLoading && !isError) {
-      setSelectedTrailerInStore(null);
-    }
-  }, [data, isLoading, isError, setSelectedTrailerInStore]);
-
-  const openModal = useCallback(() => {
-    setIsModalOpen(true);
-  }, []);
-
-  const closeModal = useCallback(() => {
-    setIsModalOpen(false);
-  }, []);
+  const { trailer, isLoading, isError, isModalOpen, openModal, closeModal } =
+    useTrailerDetails();
 
   if (isLoading) {
     return (
@@ -58,7 +26,7 @@ export default function TrailerDetails() {
     );
   }
 
-  if (!data) {
+  if (!trailer) {
     return (
       <div className={styles.details__status_message}>
         <p>Інформація про причіп не знайдена.</p>
@@ -68,16 +36,16 @@ export default function TrailerDetails() {
 
   return (
     <div className={styles.details}>
-      <h1 className={styles.details__title}>{data.name}</h1>
+      <h1 className={styles.details__title}>{trailer.name}</h1>
 
-      {data.shortDescription && (
+      {trailer.shortDescription && (
         <h2 className={styles.details__short_description}>
-          {data.shortDescription}
+          {trailer.shortDescription}
         </h2>
       )}
 
       <div className={styles.details__gallery_slider}>
-        {data.images && data.images.length > 1 && (
+        {trailer.images && trailer.images.length > 1 && (
           <button
             className={`${styles.details__slider_button} ${styles.details__slider_button_prev}`}
           >
@@ -85,11 +53,11 @@ export default function TrailerDetails() {
           </button>
         )}
         <img
-          src={data.images[0]}
-          alt={`${data.name} `}
+          src={trailer.images[0]}
+          alt={`${trailer.name} `}
           className={styles.details__image_slider}
         />
-        {data.images && data.images.length > 1 && (
+        {trailer.images && trailer.images.length > 1 && (
           <button
             className={`${styles.details__slider_button} ${styles.details__slider_button_next}`}
           >
@@ -99,38 +67,40 @@ export default function TrailerDetails() {
       </div>
 
       <div className={styles.details__meta_info}>
-        {data.brand && (
+        {trailer.brand && (
           <p>
             <span className={styles.details__meta_label}>Бренд:</span>{" "}
-            <span className={styles.details__meta_value}>{data.brand}</span>
+            <span className={styles.details__meta_value}>{trailer.brand}</span>
           </p>
         )}
-        {data.model && (
+        {trailer.model && (
           <p>
             <span className={styles.details__meta_label}>Модель:</span>{" "}
-            <span className={styles.details__meta_value}>{data.model}</span>
+            <span className={styles.details__meta_value}>{trailer.model}</span>
           </p>
         )}
-        {data.category && (
+        {trailer.category && (
           <p>
             <span className={styles.details__meta_label}>Категорія:</span>{" "}
-            <span className={styles.details__meta_value}>{data.category}</span>
+            <span className={styles.details__meta_value}>
+              {trailer.category}
+            </span>
           </p>
         )}
       </div>
 
       <div
         className={styles.details__description}
-        dangerouslySetInnerHTML={{ __html: data.description }}
+        dangerouslySetInnerHTML={{ __html: trailer.description }}
       ></div>
 
-      {data.specifications && data.specifications.length > 0 && (
+      {trailer.specifications && trailer.specifications.length > 0 && (
         <div className={styles.details__specifications}>
           <h2 className={styles.details__specifications_title}>
             Характеристики
           </h2>
           <ul className={styles.details__specifications_list}>
-            {data.specifications.map((spec, index) => (
+            {trailer.specifications.map((spec, index) => (
               <li key={index} className={styles.details__specification_item}>
                 <span className={styles.details__specification_name}>
                   {spec.name}:
@@ -145,38 +115,38 @@ export default function TrailerDetails() {
       )}
 
       <p className={styles.details__price_info}>
-        Ціна: {data.price.toLocaleString("uk-UA")} {data.currency}
+        Ціна: {trailer.price.toLocaleString("uk-UA")} {trailer.currency}
       </p>
 
       <p
         className={`${styles.details__stock_info} ${
-          data.quantity > 0
+          trailer.quantity > 0
             ? styles.details__stock
             : styles.details__out_of_stock
         }`}
       >
-        {data.quantity > 0 ? "В наявності" : "Немає в наявності"}
+        {trailer.quantity > 0 ? "В наявності" : "Немає в наявності"}
       </p>
 
       <p className={styles.details__quantity_info}>
-        Кількість на складі: {data.quantity}
+        Кількість на складі: {trailer.quantity}
       </p>
 
       <p className={styles.details__created_info}>
-        Додано: {new Date(data.createdAt).toLocaleDateString("uk-UA")}
+        Додано: {new Date(trailer.createdAt).toLocaleDateString("uk-UA")}
       </p>
 
       <button
         className={`${styles.details__buy_button} ${
-          data.quantity === 0 ? styles.details__buy_button_disabled : ""
+          trailer.quantity === 0 ? styles.details__buy_button_disabled : ""
         }`}
-        onClick={data.quantity > 0 ? openModal : undefined}
-        disabled={data.quantity === 0}
+        onClick={trailer.quantity > 0 ? openModal : undefined}
+        disabled={trailer.quantity === 0}
       >
         Купити
       </button>
 
-      {isModalOpen && <ModalOrder trailer={data} onClose={closeModal} />}
+      {isModalOpen && <ModalOrder trailer={trailer} onClose={closeModal} />}
     </div>
   );
 }

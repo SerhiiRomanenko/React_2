@@ -1,56 +1,19 @@
 import styles from "./TrailersList.module.scss";
 import { STATUS_MESSAGES } from "../../utils/constants";
-import service from "../../utils/mockapi";
-
-import { useNavigate, useLocation } from "react-router-dom";
-import { useEffect, useState, useCallback } from "react";
-
-import { useQuery } from "@tanstack/react-query";
-import useTrailersStore from "../../store/features/trailers";
 import ModalOrder from "../ModalOrder/ModalOrder";
+import { useTrailersList } from "./useTrailersList";
 
 export default function TrailersList() {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTrailerForModal, setSelectedTrailerForModal] = useState(null);
-
-  const searchQuery =
-    new URLSearchParams(location.search).get("search")?.toLowerCase() || "";
-
-  const setTrailersInStore = useTrailersStore((state) => state.setTrailers);
-
   const {
-    data: fetchedTrailers,
+    filteredTrailers,
     isLoading,
     isError,
-  } = useQuery({
-    queryKey: ["trailers", { search: searchQuery }],
-    queryFn: () => service.get("trailers"),
-  });
-
-  useEffect(() => {
-    if (fetchedTrailers) {
-      setTrailersInStore(fetchedTrailers);
-    }
-  }, [fetchedTrailers, setTrailersInStore]);
-
-  const openModal = useCallback((trailer) => {
-    setSelectedTrailerForModal(trailer);
-    setIsModalOpen(true);
-  }, []);
-
-  const closeModal = useCallback(() => {
-    setIsModalOpen(false);
-    setSelectedTrailerForModal(null);
-  }, []);
-
-  const handleCardClick = (event, id) => {
-    if (!event.target.closest("button")) {
-      navigate(`/trailer/${id}`);
-    }
-  };
+    isModalOpen,
+    selectedTrailerForModal,
+    openModal,
+    closeModal,
+    handleCardClick,
+  } = useTrailersList();
 
   if (isLoading) {
     return (
@@ -69,11 +32,6 @@ export default function TrailersList() {
       </div>
     );
   }
-
-  const filteredTrailers =
-    fetchedTrailers?.filter((trailer) =>
-      trailer.name.toLowerCase().includes(searchQuery)
-    ) || [];
 
   if (filteredTrailers.length === 0) {
     return (
