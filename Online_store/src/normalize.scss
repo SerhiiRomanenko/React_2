@@ -1,49 +1,42 @@
-/*=================================----------------------------- NORMALIZE.CSS------------------------------------==============================*/
+/*=================================----------------------------- NORMALIZE.SCSS------------------------------------==============================*/
 
-/* 1. Використовуйте більш інтуїтивну модель box-sizing */
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-/* 2. Видаліть дефолтний margin */
 * {
-	margin: 0;
+  margin: 0;
 }
 
-/* 3. Дозвольте анімації та переходи на основі ключових слів */
 html:focus-within {
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
-/* 4. Встановіть базові властивості для body */
 body {
-	min-height: 100vh;
-	text-rendering: optimizeSpeed; /* Покращує рендеринг тексту */
-	line-height: 1.5; /* Для кращої читабельності */
-	-webkit-font-smoothing: antialiased; /* Для згладжування шрифтів на macOS */
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* 5. Зробіть зображення легшими для роботи */
 img,
 picture,
 video,
 canvas,
 svg {
-	max-width: 100%;
-	display: block; /* Усуває зайвий простір під зображеннями */
+  max-width: 100%;
+  display: block;
 }
 
-/* 6. Успадкуйте шрифти для інпутів та кнопок */
 input,
 button,
 textarea,
 select {
-	font: inherit;
+  font: inherit;
 }
 
-/* 7. Уникайте переповнення тексту */
 p,
 h1,
 h2,
@@ -51,41 +44,36 @@ h3,
 h4,
 h5,
 h6 {
-	overflow-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
-/* 8. Ізолюйте кореневий елемент для стекування контексту */
 #root,
 #__next {
-	/* #__next для Next.js, якщо використовуєте */
-	isolation: isolate;
+  isolation: isolate;
 }
 
-/* 9. Видаліть стилі з гіперпосилань */
 a {
-	text-decoration: none;
-	color: inherit; /* Успадковує колір тексту від батьківського елемента */
-	cursor: pointer; /* Забезпечує, що курсор залишається покажчиком */
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
-/* 10. Видаліть стилі списків за замовчуванням для елементів із роллю list */
 ul,
 ol {
-	list-style: none;
-	padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
-/* 11. Видаліть всі анімації, переходи та плавний скролінг для тих, хто цього не бажає */
 @media (prefers-reduced-motion: reduce) {
-	html:focus-within {
-		scroll-behavior: auto;
-	}
-	*,
-	*::before,
-	*::after {
-		animation-duration: 0.01ms !important;
-		animation-iteration-count: 1 !important;
-		transition-duration: 0.01ms !important;
-		scroll-behavior: auto !important;
-	}
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

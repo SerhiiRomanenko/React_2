@@ -1,6 +1,6 @@
 import styles from "./Footer.module.scss";
 
-import FooterFeedbackForm from "../../components/FooterFeedbackForm/FooterFeetbackform";
+import FooterFeedbackForm from "../../components/FooterFeedbackForm/FooterFeedbackForm";
 
 export default function Footer() {
   return (

@@ -1,3 +1,5 @@
+@use "../../utils/variables" as variables;
+
 .overlay {
   position: fixed;
   top: 0;
@@ -45,7 +47,7 @@
   transition: color 0.2s;
 
   &:hover {
-    color: #ff4d4f;
+    color: variables.$color-accent-primary;
   }
 }
 
@@ -77,8 +79,8 @@
   transition: border-color 0.2s, box-shadow 0.2s;
 
   &:focus {
-    border-color: #e74c3c;
-    box-shadow: 0 0 0 1px #e74c3c;
+    border-color: variables.$color-accent-primary;
+    box-shadow: 0 0 0 1px variables.$color-accent-primary;
     outline: none;
   }
 }
@@ -90,7 +92,7 @@
 }
 
 .submitButton {
-  background-color: #e74c3c;
+  background-color: variables.$color-accent-primary;
   color: white;
   font-weight: bold;
   padding: 14px;
@@ -101,7 +103,7 @@
   transition: background-color 0.2s, transform 0.2s;
 
   &:hover {
-    background-color: #e74c3c;
+    background-color: variables.$color-accent-primary;
     transform: translateY(-2px);
   }
 }
