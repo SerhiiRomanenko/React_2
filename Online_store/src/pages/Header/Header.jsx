@@ -1,8 +1,15 @@
+import logo from "../../assets/images/pictures/logo.png";
+import styles from "./Header.module.scss";
+
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
-import styles from "./Header.module.scss";
-import logo from "../../assets/images/pictures/logo.png";
+import { z as zod } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const schema = zod.object({
+  query: zod.string().trim().min(1, "Будь ласка, введіть запит для пошуку"),
+});
 
 export default function Header() {
   const navigate = useNavigate();
@@ -17,6 +24,7 @@ export default function Header() {
     setValue,
     formState: { errors },
   } = useForm({
+    resolver: zodResolver(schema),
     defaultValues: {
       query: "",
     },
@@ -98,9 +106,7 @@ export default function Header() {
               type="text"
               placeholder="Пошук причепа"
               className={styles.header__searchInput}
-              {...register("query", {
-                required: "Будь ласка, введіть запит для пошуку",
-              })}
+              {...register("query")}
               onChange={handleInputChange}
             />
             {currentQuery && (

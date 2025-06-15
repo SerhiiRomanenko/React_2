@@ -1,11 +1,25 @@
 import styles from "./ModalOrder.module.scss";
 import { STATUS_MESSAGES } from "../../utils/constants";
 import { useForm } from "react-hook-form";
+import { z as zod } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import emailjs from "@emailjs/browser";
 import service from "../../utils/mockapi";
 
+const schema = zod.object({
+  name: zod.string().min(1),
+  phoneNumber: zod.string().min(1),
+  city: zod.string().min(1),
+  email: zod.string().email().optional().or(zod.literal("")),
+  paymentMethod: zod.string().min(1),
+  deliveryMethod: zod.string().min(1),
+  comments: zod.string().optional(),
+});
+
 export default function ModalOrder({ trailer, onClose }) {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset } = useForm({
+    resolver: zodResolver(schema),
+  });
 
   const onSubmit = async (data) => {
     const serviceId = "service_ofl5lph";
@@ -56,25 +70,22 @@ export default function ModalOrder({ trailer, onClose }) {
 
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <input
-            {...register("name", { required: true })}
+            {...register("name")}
             className={styles.input}
             type="text"
             placeholder="Ім’я та Прізвище *"
-            required
           />
           <input
-            {...register("phoneNumber", { required: true })}
+            {...register("phoneNumber")}
             className={styles.input}
             type="tel"
             placeholder="Мобільний телефон *"
-            required
           />
           <input
-            {...register("city", { required: true })}
+            {...register("city")}
             className={styles.input}
             type="text"
             placeholder="Місто *"
-            required
           />
           <input
             {...register("email")}
@@ -83,21 +94,13 @@ export default function ModalOrder({ trailer, onClose }) {
             placeholder="Електронна пошта (необов'язково)"
           />
 
-          <select
-            {...register("paymentMethod", { required: true })}
-            className={styles.input}
-            required
-          >
+          <select {...register("paymentMethod")} className={styles.input}>
             <option value="">Спосіб оплати *</option>
             <option value="Карткою">Карткою</option>
             <option value="Готівка">Готівка</option>
           </select>
 
-          <select
-            {...register("deliveryMethod", { required: true })}
-            className={styles.input}
-            required
-          >
+          <select {...register("deliveryMethod")} className={styles.input}>
             <option value="">Спосіб доставки *</option>
             <option value="Самовивіз">Самовивіз</option>
             <option value="Нова Пошта">Нова Пошта</option>
