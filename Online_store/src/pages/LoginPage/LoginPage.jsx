@@ -1,11 +1,13 @@
+import styles from "./LoginPage.module.scss";
+
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+
 import { z as zod } from "zod";
-import styles from "./LoginPageRoute.module.scss";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const loginSchema = zod.object({
-  username: zod.string().min(1, "Ім'я користувача є обов'язковим"),
+  username: zod.string().min(3, "Ім'я користувача є обов'язковим"),
   password: zod.string().min(6, "Пароль повинен містити щонайменше 6 символів"),
 });
 
@@ -21,6 +23,8 @@ export default function LoginPage() {
   });
 
   const onSubmit = (data) => {
+    // TODO: зробити реальну логіку аутентифікації
+
     if (data.username === "test" && data.password === "password") {
       localStorage.setItem("authToken", "fake-token");
       navigate("/");

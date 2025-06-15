@@ -1,15 +1,14 @@
+import { ROUTES } from "./utils/constants";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Layout from "./pages/Layout/Layout";
 import TrailerDetails from "./components/TrailerDetails/TrailerDetails";
 
-import { ROUTES } from "./utils/constants";
-
 import HomeRoute from "./routes/HomeRoute/HomeRoute";
 import DetailsRoute from "./routes/DetailsRoute/DetailsRoute";
 import ContactsRoute from "./routes/ContactsRoute/ContactsRoute";
 import ErrorRoute from "./routes/ErrorRoute/ErrorRoute";
-import LoginPage from "./routes/LoginPageRoute/LoginPageRoute";
+import LoginPage from "./pages/LoginPage/LoginPage";
 import PrivateRoute from "./routes/PrivateRoute/PrivateRoute";
 
 function App() {

@@ -1,37 +1,49 @@
-import service from "../../utils/mockapi";
 import styles from "./TrailersList.module.scss";
 import { STATUS_MESSAGES } from "../../utils/constants";
+import service from "../../utils/mockapi";
 
-import { useState, useEffect, useCallback } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState, useCallback } from "react";
 
+import { useQuery } from "@tanstack/react-query";
+import useTrailersStore from "../../store/features/trailers";
 import ModalOrder from "../ModalOrder/ModalOrder";
 
 export default function TrailersList() {
-  const [trailers, setTrailers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const location = useLocation();
-  const [selectedTrailer, setSelectedTrailer] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const searchParams = new URLSearchParams(location.search);
-  const searchQuery = searchParams.get("search")?.toLowerCase() || "";
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTrailerForModal, setSelectedTrailerForModal] = useState(null);
 
-  const getData = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const response = await service.get("trailers");
-      setTrailers(response);
-    } catch (err) {
-      console.error(STATUS_MESSAGES.ERROR, err);
-      setError(
-        "Не вдалося завантажити список причепів. Спробуйте оновити сторінку."
-      );
-    } finally {
-      setLoading(false);
+  const searchQuery =
+    new URLSearchParams(location.search).get("search")?.toLowerCase() || "";
+
+  const setTrailersInStore = useTrailersStore((state) => state.setTrailers);
+
+  const {
+    data: fetchedTrailers,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["trailers", { search: searchQuery }],
+    queryFn: () => service.get("trailers"),
+  });
+
+  useEffect(() => {
+    if (fetchedTrailers) {
+      setTrailersInStore(fetchedTrailers);
     }
+  }, [fetchedTrailers, setTrailersInStore]);
+
+  const openModal = useCallback((trailer) => {
+    setSelectedTrailerForModal(trailer);
+    setIsModalOpen(true);
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setIsModalOpen(false);
+    setSelectedTrailerForModal(null);
   }, []);
 
   const handleCardClick = (event, id) => {
@@ -40,20 +52,7 @@ export default function TrailersList() {
     }
   };
 
-  useEffect(() => {
-    getData();
-  }, [getData]);
-
-  const handleModalClose = () => {
-    setSelectedTrailer(null);
-    getData();
-  };
-
-  const filteredTrailers = trailers.filter((trailer) =>
-    trailer.name.toLowerCase().includes(searchQuery)
-  );
-
-  if (loading) {
+  if (isLoading) {
     return (
       <div className={styles.trailer__status_message}>
         <p>{STATUS_MESSAGES.LOADING}</p>
@@ -61,13 +60,20 @@ export default function TrailersList() {
     );
   }
 
-  if (error) {
+  if (isError) {
     return (
       <div className={styles.trailer__status_message}>
-        <p className={styles.trailer__error_message}>{error}</p>
+        <p className={styles.trailer__error_message}>
+          {STATUS_MESSAGES.ERROR} Спробуйте пізніше
+        </p>
       </div>
     );
   }
+
+  const filteredTrailers =
+    fetchedTrailers?.filter((trailer) =>
+      trailer.name.toLowerCase().includes(searchQuery)
+    ) || [];
 
   if (filteredTrailers.length === 0) {
     return (
@@ -114,20 +120,20 @@ export default function TrailersList() {
               e.stopPropagation();
               e.preventDefault();
 
-              if (!trailer.inStock && trailer.quantity === 0) {
+              if (trailer.quantity === 0) {
                 return;
               }
-              setSelectedTrailer(trailer);
+              openModal(trailer);
             }}
-            disabled={!trailer.inStock || trailer.quantity === 0}
+            disabled={trailer.quantity === 0}
           >
             Купити
           </button>
         </div>
       ))}
 
-      {selectedTrailer && (
-        <ModalOrder trailer={selectedTrailer} onClose={handleModalClose} />
+      {isModalOpen && selectedTrailerForModal && (
+        <ModalOrder trailer={selectedTrailerForModal} onClose={closeModal} />
       )}
     </div>
   );
